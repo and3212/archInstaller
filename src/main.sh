@@ -9,3 +9,9 @@
 
 # Formats partitions and installs base arch system
 ./install.sh
+
+# Configures the system
+./config.sh
+
+# Finalizes everything
+./postInstall
