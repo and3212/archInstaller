@@ -2,7 +2,7 @@
 
 # Author: Liam Lawrence
 # Date: 3.29.17
-# Makes installing Arch Linux easier
+# Sets up basic partitions, wifi settings, and user info
 
 # Tells the user if they have any steps left to complete
 checkDone() {
