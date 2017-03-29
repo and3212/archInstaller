@@ -30,7 +30,7 @@ pacman -S --noconfirm xorg xorg-server
 OPTIONS=(1 "Xfce"
          2 "Budgie"
 		 3 "GNOME"
-         4 "Cinnamon"
+		 4 "Cinnamon"
 		 5 "KDE"
 		 6 "Mate"
 		 7 "Deepin"
