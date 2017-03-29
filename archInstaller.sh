@@ -2,7 +2,16 @@
 
 # Author: Liam Lawrence
 # Date: 3.29.17
-# Makes installing Arch Linux much easier
+# Makes installing Arch Linux easier
+
+# Tells the user if they have any steps left to complete
+checkDone() {
+	if [ $1 = 1 ]; then
+		echo "$2: Finished"
+	else
+		echo "$2: Not Finished"
+	fi
+}
 
 # Dialog Menu
 HEIGHT=15
@@ -17,23 +26,15 @@ DISK=0
 MACHINE=0
 WIFI=0
 
-checkDone() {
-	if [ $1 = 1 ]; then
-		echo "$2: Finished"
-	else
-		echo "$2: Not Finished"
-	fi
-}
-
 # Dialog Values
 DIALOG_OK=0
 DIALOG_CANCEL=1
 
 # Machine information
 USERPASS=""
-ROOTPASS="toor"
-HOST="computer"
-USER="arch"
+ROOTPASS=""
+HOST=""
+USER=""
 
 # Partitioning information
 ARCHFILE=""
@@ -43,7 +44,7 @@ EFI=""
 # Options for the setup menu
 OPTIONS=(1 "Setup Profile"
          2 "Partition Disk"
-		 3 "Wifi Setup"
+	 3 "Wifi Setup"
          4 "Finish Initial Setup")
 
 # Loops through the setup menu
@@ -114,9 +115,11 @@ while true; do
 			MACHINE=1
 		    ;;
 		2)
+			# Manually partition drive
 			cfdisk
 			clear
 			
+			# Tell the program which partitions you are using
 			while true; do
 				fdisk -l
 				echo 'Example partition: /dev/nvme0n1p5'
@@ -143,6 +146,7 @@ while true; do
 			WIFI=1
 			;;
 		4)
+			# Checks to make sure that everything is completed before continuing
 			if [ $MACHINE = 1 ] && [ $DISK = 1 ] && [ $WIFI = 1 ]; then
 				break
 			else
