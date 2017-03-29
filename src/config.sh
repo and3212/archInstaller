@@ -4,8 +4,6 @@
 # Date: 3.29.17
 # Configuration for Arch Linux
 
-TIMEZONE=""
-
 # Switch to the newly installed base system
 arch-chroot /mnt /bin/bash
 
@@ -18,10 +16,79 @@ locale-gen
 # Tells the computer what language to use and creates a file
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
+# Options for the time zone menu
+OPTIONS=(1 "Alaska"
+		 2 "Arizona"
+		 3 "Eastern"
+		 4 "Hawaii"
+		 5 "Michigan"
+		 6 "Pacific"
+		 7 "Samoa"
+		 8 "Aleutian"
+		 9 "Central"
+		 10 "East-Indiana"
+		 11 "Indiana-Starke"
+		 12 "Mountain"
+		 13 "Pacific-New")
+
+TITLE="United States Time Zones"
+MENU="Choose your time zone:"
+ZONE=""
+
+CHOICE=$(dialog --clear \
+	        --backtitle "$BACKTITLE" \
+	        --title "$TITLE" \
+	        --menu "$MENU" \
+	        $HEIGHT $WIDTH $CHOICE_HEIGHT \
+	        "${OPTIONS[@]}" \
+	        2>&1 >/dev/tty)
+
 clear
-ls /usr/share/zoneinfo
-echo "===================="
-read -p "Pick a timezone to use"
+
+# Lets you choose your favorite time zone
+case $CHOICE in
+		1)
+			$ZONE="Alaska"
+			;;
+		2)
+			$ZONE="Arizona"
+			;;
+		3)
+			$ZONE="Eastern"
+			;;
+		4)
+			$ZONE="Hawaii"
+			;;
+		5)
+			$ZONE="Michigan"
+			;;
+		6)
+			$ZONE="Pacific"
+			;;
+		7)
+			$ZONE="Samoa"
+			;;
+		8)
+			$ZONE="Aleutian"
+			;;
+		9)
+			$ZONE="Central"
+			;;
+		10)
+			$ZONE="East-Indiana"
+			;;
+		11)
+			$ZONE="Indiana-Starke"
+			;;
+		12)
+			$ZONE="Mountain"
+			;;
+		13)
+			$ZONE="Pacific-New"
+			;;
+esac
+ln -s /usr/share/zoneinfo/US/$ZONE /etc/localtime
+hwlock --systohc --utc
 
 # Sets root password
 echo -e "$ROOTPASS\n$ROOTPASS" | passwd
