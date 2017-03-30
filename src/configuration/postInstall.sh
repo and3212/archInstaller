@@ -15,7 +15,9 @@ echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 pacman -S --noconfirm alsa-utils
 
 # Edits our mirrorlist
-
+echo "Server = http://mirror.cs.vt.edu/pub/ArchLinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+echo "Server = https://mirrors.lug.mtu.edu/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
+echo "Server = http://mirrors.acm.wpi.edu/archlinux/\$repo/os/\$arch" >> /etc/pacman.d/mirrorlist
 pacman --noconfirm -Syy
 
 # Sets up the users account

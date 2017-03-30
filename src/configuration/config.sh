@@ -150,7 +150,7 @@ echo "#<ip-address>	<hostname.domain.org>	<hostname>" > /etc/hosts
 echo "127.0.0.1		localhost.localdomain	localhost" >> /etc/hosts
 echo "::1		localhost.localdomain	localhost" >> /etc/hosts
 echo "127.0.1.1		$HOST.localdomain	$HOST" >> /etc/hosts
-echo "$HOST" >> /etc/hostname
+echo "$HOST" > /etc/hostname
 systemctl enable dhcpcd
 
 # Sets up our Network Manager Applet
