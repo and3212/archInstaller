@@ -1,7 +1,7 @@
 # archInstaller
 A tool that will make installing Arch Linux simpler and easier
 
-Order of running the files
+File System
 
 - main_install.sh
 
@@ -17,11 +17,9 @@ Order of running the files
   
 How to use:
 - Go into src/ using `cd src`
-- Run the command `chmod +x *`
-- To begin the progess type `./archInstaller.sh`
+- Run the command `chmod +x */*`
+- To begin the progess type `./main_installer.sh`
+- After the reboot, run `./main_config.sh`
+- Reboot again and then run `grub-mkconfig -o /boot/grub/grub.cfg` to let GRUB see windows
 
-**NOTE:** Once this is completed open up a terminal in your new system and type the command
-
-`grub-mkconfig -o /boot/grub/grub.cfg`
-
-This will allow your computer to load your other partitions into GRUB
+**NOTE:** I take no responsibility to damaging your system, use at your own risk
