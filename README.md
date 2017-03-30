@@ -3,19 +3,17 @@ A tool that will make installing Arch Linux simpler and easier
 
 Order of running the files
 
-┌ main_install.sh
+- main_install.sh
 
-│ ├─ setup.sh
+ - setup.sh
+ 
+ - install.sh
+ 
+ - main_config.sh
 
-│ └─ install.sh
-
-│
-
-└ main_config.sh
-
-  ├─ config.sh
+  - config.sh
   
-  └─ postInstall.sh
+  - postInstall.sh
   
 How to use:
 - Go into src/ using `cd src`
