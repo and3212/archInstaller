@@ -40,6 +40,7 @@ USER=""
 ARCHFILE=""
 SWAP=""
 EFI=""
+WINDOWS=0
 
 # Options for the setup menu
 OPTIONS=(1 "Setup Profile"
@@ -116,7 +117,16 @@ while true; do
 		    ;;
 		2)
 			# Manually partition drive
-			cfdisk
+			read -p "Are you dual booting from a previous windows install [Y/n]: " windowsvar
+			if [ "$windowsvar" != y ]; then
+				WINDOWS=0;
+			else
+				WINDOWS=1;
+			fi
+
+			fdisk -l
+			read -p "Enter your main file system: " mainvar
+			cfdisk $mainvar
 			clear
 			
 			# Tell the program which partitions you are using
@@ -125,7 +135,10 @@ while true; do
 				echo 'Example partition: /dev/nvme0n1p5'
 				read -p 'Enter your Root partition: ' ARCHFILE
 				read -p 'Enter your Swap partition: ' SWAP
-				read -p 'Enter your EFI partition: ' EFI
+
+				if [ $WINDOWS = 1 ]; then
+					read -p 'Enter your EFI partition: ' EFI
+				then
 				clear
 
 				echo "ROOT: $ARCHFILE"
