@@ -8,22 +8,23 @@
 mkfs.ext4 $ARCHFILE
 mkswap $SWAP
 swapon $SWAP
-
+read -p "Press enter to continue...." ra
 # Mounts the main partition and mounts the EFI to the proper place
 mount $ARCHFILE /mnt
-mkdir /mnt/boot/efi
-mount $EFI /mnt/boot/efi
+
+if [ $WINDOWS = 1 ]; then
+	mkdir /mnt/boot/efi
+	mount $EFI /mnt/boot/efi
+fi
 
 # Install the base system for Arch Linux
 pacstrap /mnt base base-devel
 
 # Create fstab files and checks to see if they were created
 genfstab /mnt >> /mnt/etc/fstab
-cat fstab
 
-read -p "Does this file look correct? [Y/n] -n 1 -r
-REPLY=${REPLY,,}
-if [ $REPLY = "n" ]
-	echo "ERROR IN FSTAB ENTRIES"
-	exit
-fi
+# Finishes up and reboots
+arch-chroot /mnt /bin/bash
+umount -R /mnt
+read -p "Rebooting now, keep flash drive inserted, hit ENTER to continue...." -r
+systemctl reboot
