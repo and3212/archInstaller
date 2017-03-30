@@ -22,6 +22,9 @@ ROOTPASS="toor"
 HOST="computer"
 USER="arch"
 
+# Turns on wifi so we can work with it for the rest of the configuration process
+wifi-menu
+
 # Sets up hostname, username, password and root password
 read -p 'Username: ' uservar
 read -p 'Hostname: ' hostvar
@@ -153,7 +156,6 @@ systemctl enable dhcpcd
 # Sets up our Network Manager Applet
 pacman -S --noconfirm network-manager-applet
 systemctl enable NetworkManager.service
-
 
 clear
 ip link
