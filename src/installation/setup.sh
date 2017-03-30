@@ -121,4 +121,4 @@ while true; do
 esac
 done
 
-echo "$ARCHFILE" > ARCHFILE.txt
+echo "$ARCHFILE" > ../ARCHFILE.txt

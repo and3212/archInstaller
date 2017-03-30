@@ -8,4 +8,4 @@
 . ./configuration/config.sh
 
 # Finalizes everything
-. ./configuration/postInstall
+. ./configuration/postInstall.sh

@@ -26,5 +26,6 @@ genfstab /mnt >> /mnt/etc/fstab
 # Finishes up and reboots
 arch-chroot /mnt /bin/bash
 umount -R /mnt
+exit
 read -p "Rebooting now, keep flash drive inserted, hit ENTER to continue...." -r
-systemctl reboot
+reboot

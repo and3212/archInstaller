@@ -5,14 +5,14 @@
 # Configuration for Arch Linux
 
 # Install location for GRUB
-ARCHFILE=$( cat ARCHFILE.txt )
+ARCHFILE=$( cat ../ARCHFILE.txt )
 
 # Dialog Menu
 TITLE="United States Time Zones"
 MENU="Choose your time zone:"
-HEIGHT=35
+HEIGHT=25
 WIDTH=40
-CHOICE_HEIGHT=4
+CHOICE_HEIGHT=20
 BACKTITLE="Arch Installer - Liam Lawrence - 3.29.17"
 ZONE=""
 
@@ -159,17 +159,15 @@ clear
 ip link
 
 read -p "Do you have an ethernet device [y/N]: " -n 1 -r
-REPLY={REPLY,,}
+REPLY=${REPLY,,}
 if [ "$REPLY" != "n" ]; then
 	read -p "Enter the name of your ethernet device: " ethvar
 	systemctl disable $ethvar.service
 fi
+echo
 
 read -p "Enter the name of your wifi device: " wifivar
 systemctl disable netctl-auto@$wifivar.service
-
-# Installs sound drivers
-pacman -S --noconfirm alsa-utils
 
 # Installs Yaourt
 echo "[archlinuxfr]" >> /etc/pacman.conf

@@ -11,6 +11,9 @@ echo "[...]" >> /etc/pacman.conf
 echo "[multilib]" >> /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
+# Installs sound drivers
+pacman -S --noconfirm alsa-utils
+
 # Edits our mirrorlist
 
 pacman --noconfirm -Syy
@@ -89,4 +92,6 @@ esac
 # Finishes install
 pacman -S --noconfirm lxdm
 systemctl enable lxdm
+read -p "Finished installation, the system will now reboot, remove the USB stick" -r
+rm ../ARCHFILE.txt
 reboot
