@@ -40,7 +40,7 @@ while [ "$USERPASS" = "" ]; do
 		ROOTPASS="$pass1var"
 		echo '---------------------------------------'
 		echo 'Hostname, username and password are set'
-		read -p 'Would you like to set a different root password? [Y/n] ' -n 1 -r
+		read -sp 'Would you like to set a different root password? [Y/n] ' -n 1 -r
 		REPLY=${REPLY,,} #toLower
 		if [ "$REPLY" != "n" ]; then
 			echo
